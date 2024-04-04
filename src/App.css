@@ -1,74 +1,43 @@
-/* App.css */
-
-/* Style pour la barre latérale contenant la liste des notes */
 .Side {
   position: fixed;
-  width: 300px;
+  width: 240px;
   top: 0px;
   left: 0px;
   bottom: 0px;
-  background-color: rgb(29, 35, 39);
-}
-/* Style au survol des boutons de note */
-.Note-button:hover {
-  background: rgb(3, 65, 35);
+  background-color: rgb(0, 17, 1);
 }
 
-/* Style des boutons de note */
-.Note-button {
-  display: block;
-  width: calc(100%);
-  padding: 14px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  border: none;
-  background: rgb(17, 38, 24);
-  color: inherit;
-  font-weight: bold;
-  text-align: left; /* Titres alignés à gauche */
-}
-
-/* Style pour la section principale contenant les champs de saisie et le contenu des notes */
 .Main {
   height: 100vh;
-  width: calc(100% - 300px); /* Largeur ajustée pour compenser la barre latérale */
   margin-inline-start: 240px;
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: center; /* Centrage du texte */
+  background-image: url("/c:/Users/detzi/Bureau/app_note/public/feuilles.jpg");
 }
 
-/* Style pour les champs de saisie */
-.Main input[type="text"],
-.Main textarea {
-  align-content: right;
+.Loading-wrapper {
+  padding: 12px;
+}
+
+.Create-note-wrapper {
+  padding: 12px;
+}
+
+.Note-button {
   display: block;
-  width: calc(100% - 300px); /* Largeur ajustée pour compenser la marge intérieure */
-  margin-inline-start: 240px;
-  margin-bottom: 10px;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid rgb(3, 65, 35);
-  border-radius: 10px;
-  border-width: 5px;
-  background: rgb(29, 35, 39);
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  background: none;
+  color: inherit;
+  font-weight: bold;
 }
 
-/* Style pour les champs de saisie lorsqu'ils sont en focus */
-.Main input[type="text"]:focus,
-.Main textarea:focus {
-  outline: none;
-  border-color: rgb(12, 110, 63); /* Couleur de la bordure lorsqu'en focus */
-  border-radius: 10px;
-  border-width: 5px;
-  background: rgb(44, 51, 56);
-
+.Note-button-selected {
+  background: rgb(0, 46, 17);
 }
 
-/* Style visuel pour indiquer les champs de texte modifiables */
-.Main input[type="text"]::placeholder,
-.Main textarea::placeholder {
-  color: #999; /* Couleur du texte */
+.Note-button:hover {
+  background: rgb(0, 66, 24);
 }
-
