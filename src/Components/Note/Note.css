@@ -34,6 +34,9 @@
   background-color: rgba(21, 27, 23, 0.7); /* Réglez la valeur alpha ici */
 }
 
+.Note-container {
+  background-color: var(--note-color, rgba(21, 27, 23, 0.7)); /* Utilisez la variable de couleur de la note */
+}
 
 .Note-actions {
   font-size: 14px;

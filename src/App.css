@@ -1,3 +1,9 @@
+/* Déclaration de la variable globale */
+:root {
+  --selected-color: #012907; /* Définir une couleur par défaut */
+}
+
+/* Section de la SideBar */
 .Side {
   position: fixed;
   width: 240px;
@@ -10,7 +16,7 @@
 .Main {
   height: 100vh;
   margin-inline-start: 240px;
-  background-image: url("/c:/Users/detzi/Bureau/app_note/public/feuilles.jpg");
+  background-image: url("/public/feuilles.jpg");
 }
 
 .Loading-wrapper {
@@ -21,9 +27,10 @@
   padding: 12px;
 }
 
+/* Section contenant le titre dans la SideBar */
 .Note-button {
   text-align: left;
-  width: 100%;
+  width: calc(100% - 24px); 
   padding: 12px;
   display: flex;
   justify-content: flex-start;
@@ -34,15 +41,33 @@
   font-weight: bold;
 }
 
+/* Section contenant la CheckBox dans la SideBar */
 .Note-container {
   display: flex;
+  align-items: center;
+}
+/* Marge à droite pour la case à cocher */
+.CheckCase {
+  margin-right: 12px; 
 }
 
-
+/* Lorsque l'on sélectionne un titre de note */
 .Note-button-selected {
-  background: rgb(0, 46, 17);
+  background-color: var(--selected-color);
 }
 
+/* Lorsque l'on survole un titre de note */
 .Note-button:hover {
   background: rgb(0, 66, 24);
+}
+
+.Color-picker-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.Color-picker-button:hover {
+  opacity: 0.8;
 }

@@ -3,25 +3,29 @@
     {
       "title": "Ajouter un libellé \"Enregistré\" après la modification d'une note",
       "content": "Ne pas afficher le libellé au chargement d’une note\nAprès l’enregistrement d’une modification, l’afficher\nLorsque le titre ou le contenu est à nouveau modifié, ne plus l’afficher\n",
-      "lastUpdatedAt": "2024-04-05T09:54:26.973Z",
+      "lastUpdatedAt": "2024-04-05T14:17:35.189Z",
+      "color": "#ffffff",
       "id": "27ad"
     },
     {
       "title": "Rediriger vers la note nouvellement créée",
-      "content": "lorem ipsus",
-      "lastUpdatedAt": "2024-04-05T09:47:28.988Z",
+      "content": "lorem ipsus e\n",
+      "lastUpdatedAt": "2024-04-05T14:17:34.046Z",
+      "color": "#ffffff",
       "id": "45td"
     },
     {
       "title": "Recherche par titre et contenu",
       "content": "Une barre de recherche permet de filtrer en temps réel les notes par titre et contenu\n\nOn peut effacer les termes de la recherche avec un bouton (X)\n\nLes termes de la recherche sont en surbrillance dans les notes trouvées",
-      "lastUpdatedAt": "2024-04-05T09:48:02.684Z",
+      "lastUpdatedAt": "2024-04-05T13:08:42.431Z",
+      "color": "#286fcc",
       "id": "2c0a"
     },
     {
       "title": "Supprimer une note",
       "content": "Au clic sur le bouton, la note est supprimée du serveur\n\nElle disparaît de la liste des notes\n\nÉventuellement, elle n'est pas supprimée mais on lui ajoute \"inTrash\": true",
-      "lastUpdatedAt": "2024-04-05T09:48:19.641Z",
+      "lastUpdatedAt": "2024-04-05T13:12:16.069Z",
+      "color": "#286fcc",
       "id": "83ae"
     },
     {
@@ -32,14 +36,16 @@
     },
     {
       "title": "Enregistrer automatiquement les modifications d'une note",
-      "content": "Utiliser un hook personnalisé :\n\nexport const useDebouncedEffect = (effect, deps, delay) => {\n  useEffect(() => {\n    const handler = setTimeout(() => effect(), delay);\n\n    return () => clearTimeout(handler);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [...(deps || []), delay]);\n};",
-      "lastUpdatedAt": "2024-04-05T09:48:53.962Z",
+      "content": "Utiliser un hook personnalisé :\n\nexport const useDebouncedEffect = (effect, deps, delay) => {\n  useEffect(() => {\n    const handler = setTimeout(() => effect(), delay);\n\n    return () => clearTimeout(handler);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [...(deps || []), delay]);\n};\n\ntest       ",
+      "lastUpdatedAt": "2024-04-05T14:22:48.586Z",
+      "color": "#ffffff",
       "id": "d751"
     },
     {
       "title": "Afficher les notes les plus récemment modifiées en premier",
       "content": "Enregistrer la date de dernière modification dateOfLastUpdate dans la note.\n\nSoit faire le tri côté client, soit côté serveur (https://www.npmjs.com/package/json-server).\n\nFaire apparaître la date, l’heure et la minute.\n\nAlternativement, rendre les notes positionnables par l'utilisateur.\n\nActivité",
-      "lastUpdatedAt": "2024-04-05T09:49:13.355Z",
+      "lastUpdatedAt": "2024-04-05T13:25:57.846Z",
+      "color": "#286fcc",
       "id": "182c"
     },
     {

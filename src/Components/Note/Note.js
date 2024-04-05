@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
 import "./Note.css";
 
+// Définition du hook personnalisé useDebouncedEffect en dehors du composant
+export const useDebouncedEffect = (effect, deps, delay) => {
+  useEffect(() => {
+    const handler = setTimeout(() => effect(), delay);
+    return () => clearTimeout(handler);
+  }, [...(deps || []), delay]);
+};
+
 export function Note({
   id,
   title: initialTitle,
@@ -10,13 +18,22 @@ export function Note({
 }) {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
-  const [isSaved, setIsSaved] = useState(false); // Ajout de l'état pour gérer l'affichage du libellé
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     setTitle(initialTitle);
     setContent(initialContent);
-    setIsSaved(false); // Assurez-vous que le libellé n'est pas affiché au chargement initial
+    setIsSaved(false);
   }, [id, initialTitle, initialContent]);
+
+  // Utilisation du hook personnalisé pour enregistrer automatiquement les modifications d'une note
+  useDebouncedEffect(
+    () => {
+      updateNote();
+    },
+    [title, content],
+    1000 // Délai de 1 seconde
+  );
 
   const updateNote = async () => {
     const response = await fetch(`/notes/${id}`, {
