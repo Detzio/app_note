@@ -1,43 +1,113 @@
 {
   "notes": [
     {
-      "id": "27ad",
-      "title": "Note numéro 1",
-      "content": "lorem ipsus",
-      "author": "TOTO"
+      "title": "Ajouter un libellé \"Enregistré\" après la modification d'une note",
+      "content": "Ne pas afficher le libellé au chargement d’une note\nAprès l’enregistrement d’une modification, l’afficher\nLorsque le titre ou le contenu est à nouveau modifié, ne plus l’afficher\n",
+      "lastUpdatedAt": "2024-04-05T09:54:26.973Z",
+      "id": "27ad"
     },
     {
-      "title": "TEST",
+      "title": "Rediriger vers la note nouvellement créée",
       "content": "lorem ipsus",
-      "lastUpdatedAt": "2024-04-04T14:05:07.377Z",
+      "lastUpdatedAt": "2024-04-05T09:47:28.988Z",
       "id": "45td"
     },
     {
-      "title": "titre test",
-      "content": "mlkjhgfghuijkoplm^lskglnkognqsfqzf qz\n\nfqsfqzdqdz",
-      "lastUpdatedAt": "2024-04-04T14:36:27.115Z",
+      "title": "Recherche par titre et contenu",
+      "content": "Une barre de recherche permet de filtrer en temps réel les notes par titre et contenu\n\nOn peut effacer les termes de la recherche avec un bouton (X)\n\nLes termes de la recherche sont en surbrillance dans les notes trouvées",
+      "lastUpdatedAt": "2024-04-05T09:48:02.684Z",
       "id": "2c0a"
     },
     {
-      "title": "new test",
-      "content": "test",
-      "lastUpdatedAt": "2024-04-04T14:34:16.901Z",
+      "title": "Supprimer une note",
+      "content": "Au clic sur le bouton, la note est supprimée du serveur\n\nElle disparaît de la liste des notes\n\nÉventuellement, elle n'est pas supprimée mais on lui ajoute \"inTrash\": true",
+      "lastUpdatedAt": "2024-04-05T09:48:19.641Z",
       "id": "83ae"
     },
     {
-      "title": "test again",
-      "content": "ttttttttttttt",
+      "title": "Afficher les messages d'erreur",
+      "content": "Erreurs potentielles :\n\n- au chargement des notes\n- à la création d’une note\n- à la modification\n- à la suppression",
+      "lastUpdatedAt": "2024-04-05T09:48:36.324Z",
       "id": "ef47"
     },
     {
-      "title": "1",
-      "content": "",
+      "title": "Enregistrer automatiquement les modifications d'une note",
+      "content": "Utiliser un hook personnalisé :\n\nexport const useDebouncedEffect = (effect, deps, delay) => {\n  useEffect(() => {\n    const handler = setTimeout(() => effect(), delay);\n\n    return () => clearTimeout(handler);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [...(deps || []), delay]);\n};",
+      "lastUpdatedAt": "2024-04-05T09:48:53.962Z",
       "id": "d751"
     },
     {
-      "title": "bonjour",
-      "content": "test\n",
+      "title": "Afficher les notes les plus récemment modifiées en premier",
+      "content": "Enregistrer la date de dernière modification dateOfLastUpdate dans la note.\n\nSoit faire le tri côté client, soit côté serveur (https://www.npmjs.com/package/json-server).\n\nFaire apparaître la date, l’heure et la minute.\n\nAlternativement, rendre les notes positionnables par l'utilisateur.\n\nActivité",
+      "lastUpdatedAt": "2024-04-05T09:49:13.355Z",
       "id": "182c"
+    },
+    {
+      "title": "Épingler une note",
+      "content": "\nUn bouton est affiché à côté du titre de la note dans la liste\n\nAu clic sur le bouton, la note est marquée comme épinglée\n\nLes notes épinglées apparaissent en haut de la liste\n\nAu clic sur le bouton d'une note épinglée, la note n'est plus marquée comme épinglée",
+      "lastUpdatedAt": "2024-04-05T09:49:48.868Z",
+      "id": "000b"
+    },
+    {
+      "title": "Bouton pour changer de thème (jour-nuit)",
+      "content": "Bouton soleil-lune (passer de l’un à l’autre ou en afficher un creux et l’autre plein)",
+      "lastUpdatedAt": "2024-04-05T09:50:04.764Z",
+      "id": "1a46"
+    },
+    {
+      "title": "Marquer une note comme faite (`checked`)",
+      "content": "",
+      "lastUpdatedAt": "2024-04-05T09:50:25.008Z",
+      "id": "d9b6"
+    },
+    {
+      "title": "Au clic sur le bouton Supprimer, demander la confirmation dans une modale",
+      "content": "\n\nAfficher une fenêtre modale au premier plan au milieu de l'écran (le reste de l'application apparaît grisé derrière un masque semi-transparent)\n\nUn texte demande : \"Voulez-vous supprimer la note ?\"\n\nUn bouton \"Annuler\" ferme la modale\n\nUn bouton \"Confirmer\" ferme la modale et supprime la note\n\nUn clic en dehors de la modale ferme la modale\n\nLa touche Échap ferme la modale",
+      "lastUpdatedAt": "2024-04-05T09:50:41.137Z",
+      "id": "b83f"
+    },
+    {
+      "title": "Afficher un panneau de rendu Markdown",
+      "content": "Rend le contenu de la note au format Markdown visuellement.\n\nVoir Simplenote.",
+      "lastUpdatedAt": "2024-04-05T09:50:59.750Z",
+      "id": "ec72"
+    },
+    {
+      "title": "Pagination",
+      "content": "Au chargement de l'app, ne charger que les 10 premières notes (/notes?_page=1&_limit=10)\n\nSous la liste des notes, afficher un bouton \"Voir plus\"\n\nAu clic, afficher la page suivante, et chaque clic charge la page suivante (le bouton reste toujours affiché sous les notes)\n\nPendant le chargement de chaque page, afficher le loader",
+      "lastUpdatedAt": "2024-04-05T09:51:15.217Z",
+      "id": "1923"
+    },
+    {
+      "title": "Afficher le nom de l'utilisateur dans une barre de statut",
+      "content": "Dans une barre de statut générale, afficher le nom de l’utilisateur (GET http://localhost:4000/profile).",
+      "lastUpdatedAt": "2024-04-05T09:51:29.716Z",
+      "id": "8737"
+    },
+    {
+      "title": "Afficher les étiquettes à côté du titre des notes dans la liste",
+      "content": "",
+      "lastUpdatedAt": "2024-04-05T09:51:38.742Z",
+      "id": "a1cc"
+    },
+    {
+      "title": "Ajouter des étiquettes à une note",
+      "content": "",
+      "lastUpdatedAt": "2024-04-05T09:51:52.362Z",
+      "id": "ba7c"
+    },
+    {
+      "title": "Refactoriser les appels réseau",
+      "content": "Extraire les appels à fetch et json dans une fonction réutilisable.",
+      "lastUpdatedAt": "2024-04-05T09:52:38.110Z",
+      "id": "4898"
+    },
+    {
+      "id": "a3bb",
+      "title": "Nouvelle note",
+      "content": "",
+      "lastUpdatedAt": "2024-04-05T10:29:26.197Z",
+      "checked": false
     }
   ],
   "profile": {

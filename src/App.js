@@ -36,6 +36,7 @@ function App() {
           title: "Nouvelle note",
           content: "",
           lastUpdatedAt: new Date(),
+          checked: false, // Ajouter la propriété "checked" avec la valeur false par défaut
         }),
       });
       if (!response.ok) {
@@ -52,7 +53,7 @@ function App() {
     fetchNotes();
   }, []);
 
-  const refreshNote = async (id, { title, content, lastUpdatedAt }) => {
+  const refreshNote = async (id, { title, content, lastUpdatedAt, checked }) => {
     try {
       const response = await fetch(`/notes/${id}`, {
         method: "PUT",
@@ -62,7 +63,8 @@ function App() {
         body: JSON.stringify({
           title,
           content,
-          lastUpdatedAt: new Date(),
+          lastUpdatedAt,
+          checked, // Inclure la propriété "checked" dans la requête PUT
         }),
       });
       if (!response.ok) {
@@ -71,7 +73,7 @@ function App() {
       const updatedNote = await response.json();
       setNotes(
         notes.map((note) =>
-          note.id === id ? { id, title, content, lastUpdatedAt } : note
+          note.id === id ? { ...updatedNote } : note
         )
       );
     } catch (error) {
@@ -79,34 +81,53 @@ function App() {
     }
   };
 
+  const handleCheckboxChange = (isChecked, id) => {
+    setNotes(
+      notes.map((note) =>
+        note.id === id ? { ...note, checked: isChecked } : note // Mettre à jour l'état "checked" de la note correspondante
+      )
+    );
+  };
+
   const selectedNote =
     notes && notes.find((note) => note.id === selectedNoteId);
 
   return (
     <>
-      <aside className="Side">
-        <div className="Create-note-wrapper">
-          <Button onClick={createNote}>+ Create new note</Button>
+  <aside className="Side">
+    <div className="Create-note-wrapper">
+      <Button onClick={createNote}>+ Create new note</Button>
+    </div>
+    {isLoading ? (
+      <div className="Loading-wrapper">
+        <Loading />
+      </div>
+    ) : (
+      notes?.map((note) => (
+        <div key={note.id} className="Note-container">
+          {/* Afficher la note dans la barre latérale */}
+          <button
+            className={`Note-button ${
+              selectedNoteId === note.id ? "Note-button-selected" : ""
+            }`}
+            onClick={() => {
+              setSelectedNoteId(note.id);
+            }}
+          >
+            {note.title}
+          </button>
+          {/* Afficher la case à cocher */}
+          <label>
+            <input
+              type="checkbox"
+              checked={note.checked} // Utiliser l'état "checked" de la note
+              onChange={(event) => handleCheckboxChange(event.target.checked, note.id)}
+            />
+            {note.checked && <span></span>}
+          </label>
         </div>
-        {isLoading ? (
-          <div className="Loading-wrapper">
-            <Loading />
-          </div>
-        ) : (
-          notes?.map((note) => (
-            <button
-              className={`Note-button ${
-                selectedNoteId === note.id ? "Note-button-selected" : ""
-              }`}
-              key={note.id}
-              onClick={() => {
-                setSelectedNoteId(note.id);
-              }}
-            >
-              {note.title}
-            </button>
-          ))
-        )}
+      ))
+    )}
       </aside>
       <main className="Main">
         {selectedNote ? (
@@ -114,6 +135,7 @@ function App() {
             id={selectedNote.id}
             title={selectedNote.title}
             content={selectedNote.content}
+            checked={selectedNote.checked} // Transférer l'état "checked" au composant Note
             onSubmit={refreshNote}
           />
         ) : null}

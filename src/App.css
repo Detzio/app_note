@@ -22,7 +22,7 @@
 }
 
 .Note-button {
-  display: block;
+  text-align: left;
   width: 100%;
   padding: 12px;
   display: flex;
@@ -33,6 +33,11 @@
   color: inherit;
   font-weight: bold;
 }
+
+.Note-container {
+  display: flex;
+}
+
 
 .Note-button-selected {
   background: rgb(0, 46, 17);
