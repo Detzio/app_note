@@ -15,6 +15,7 @@ export function Note({
   title: initialTitle,
   content: initialContent,
   onSubmit,
+  color // Ajoutez la prop color
 }) {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
@@ -23,8 +24,11 @@ export function Note({
   useEffect(() => {
     setTitle(initialTitle);
     setContent(initialContent);
-    setIsSaved(false);
   }, [id, initialTitle, initialContent]);
+
+  useEffect(() => {
+    setIsSaved(false);
+  }, [id]);
 
   // Utilisation du hook personnalisé pour enregistrer automatiquement les modifications d'une note
   useDebouncedEffect(
@@ -32,7 +36,7 @@ export function Note({
       updateNote();
     },
     [title, content],
-    1000 // Délai de 1 seconde
+    3000 // Délai de 3 secondes
   );
 
   const updateNote = async () => {

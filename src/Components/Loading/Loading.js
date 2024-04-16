@@ -2,7 +2,7 @@ import "./Loading.css";
 
 export function Loading() {
   return (
-    <div class="lds-ring">
+    <div className="lds-ring">
       <div></div>
       <div></div>
       <div></div>

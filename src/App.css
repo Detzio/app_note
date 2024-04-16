@@ -2,20 +2,34 @@
 :root {
   --selected-color: #012907; /* Définir une couleur par défaut */
 }
+/* Barre horizontale en haut de la page */
+.Top {
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
+  background-color: rgb(34, 42, 35);
+  border: none; 
+}
 
 /* Section de la SideBar */
 .Side {
   position: fixed;
-  width: 240px;
-  top: 0px;
+  overflow-y: auto;
+  height: 100vh;
+  width: 400px;
+  top: 50px;
   left: 0px;
   bottom: 0px;
   background-color: rgb(0, 17, 1);
 }
 
+/* Section principale de l'application */
 .Main {
   height: 100vh;
-  margin-inline-start: 240px;
+  margin-left: 400px;
+  padding-top: 50px;
   background-image: url("/public/feuilles.jpg");
 }
 
@@ -28,7 +42,7 @@
 }
 
 /* Section contenant le titre dans la SideBar */
-.Note-button {
+.NoteTitle-button {
   text-align: left;
   width: calc(100% - 24px); 
   padding: 12px;
@@ -36,7 +50,7 @@
   justify-content: flex-start;
   align-items: center;
   border: none;
-  background: none;
+  background-color: var(--note-color, rgba(21, 27, 23, 0.7));
   color: inherit;
   font-weight: bold;
 }
@@ -46,28 +60,18 @@
   display: flex;
   align-items: center;
 }
-/* Marge à droite pour la case à cocher */
+/* Marge à droite de la Side pour la case à cocher */
 .CheckCase {
   margin-right: 12px; 
 }
 
 /* Lorsque l'on sélectionne un titre de note */
-.Note-button-selected {
-  background-color: var(--selected-color);
+.NoteTitle-button-selected {
+  background-color: rgb(0, 66, 24);
 }
 
 /* Lorsque l'on survole un titre de note */
-.Note-button:hover {
+.NoteTitle-button:hover {
   background: rgb(0, 66, 24);
 }
 
-.Color-picker-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.Color-picker-button:hover {
-  opacity: 0.8;
-}

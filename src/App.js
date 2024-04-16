@@ -12,6 +12,7 @@ const [selectedNoteId, setSelectedNoteId] = useState(null);
 const [error, setError] = useState(null);
 const [selectedColor, setSelectedColor] = useState("#ffffff");
 const [showColorPicker, setShowColorPicker] = useState(false);
+//const [handleCheckboxChange, setHandleCheckboxChange] = useState(false);
 
 // Fonction pour récupérer les notes
 const fetchNotes = async () => {
@@ -31,72 +32,69 @@ setIsLoading(false);
 
 // Fonction pour créer une nouvelle note
 const createNote = async () => {
-try {
-const response = await fetch("/notes", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    title: "Nouvelle note",
-    content: "",
-    lastUpdatedAt: new Date(),
-    checked: false,
-    color: selectedColor,
-  }),
-});
-if (!response.ok) {
-  throw new Error("Erreur lors de la création de la note");
-}
-const newNote = await response.json();
-setNotes([newNote, ...notes]);
-} catch (error) {
-setError(error.message);
-}
+  try {
+    // Envoi d'une requête POST au serveur pour créer une nouvelle note
+    const response = await fetch("/notes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Le contenu envoyé est de type JSON
+      },
+      body: JSON.stringify({
+        title: "Nouvelle note", // Titre par défaut de la nouvelle note
+        content: "", // Contenu vide par défaut de la nouvelle note
+        lastUpdatedAt: new Date(), // Date de dernière mise à jour
+        checked: false, // Indicateur de vérification
+        color: selectedColor, // Couleur de la note
+      }),
+    });
+    if (!response.ok) { // Vérification de la réponse de la requête
+      throw new Error("Erreur lors de la création de la note");
+    }
+    const newNote = await response.json();// Extraction de la nouvelle note de la réponse JSON
+    setNotes([newNote, ...notes]);// Mise à jour de l'état des notes avec la nouvelle note créée
+  } catch (error) {
+    setError(error.message);// En cas d'erreur, stockage du message d'erreur
+  }
 };
-
-// Effet pour charger les notes au montage
-useEffect(() => {
-fetchNotes();
-}, []);
+useEffect(() => { // Effet pour charger les notes au montage
+  fetchNotes();  // pour récupérer les notes existantes
+}, []); // Le tableau vide signifie qu'il doit être exécuté qu'une seule fois
 
 // Fonction pour mettre à jour une note
-const refreshNote = async (
-id,
-{ title, content, lastUpdatedAt, checked, color }
-) => {
-try {
-const response = await fetch(`/notes/${id}`, {
+const refreshNote = async (id, updatedNote) => {
+setNotes(notes.map((note) => (note.id === id ? updatedNote : note)))}
+
+// Fonction pour gérer le changement de l'état checked d'une note
+const handleCheckboxChange = (isChecked, id) => {
+  setNotes(
+  notes.map((note) =>
+    note.id === id ? { ...note, checked: isChecked } : note
+  )
+  );
+
+  /*for (let item of notes) {
+    if (item.id === id) {
+      updateNote(item);
+    }
+  }*/
+};
+
+// Fonction pour sauvegarder la checkbox
+/*const updateNote = async (note) => {
+const response = await fetch(`/notes/${note.id}`, {
   method: "PUT",
   headers: {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    title,
-    content,
-    lastUpdatedAt,
-    checked,
-    color: selectedColor,
+    title: note.title,
+    content: note.content,
+    checked: note.checked,
+    color: note.color,
+    lastUpdatedAt: new Date(),
   }),
 });
-if (!response.ok) {
-  throw new Error("Erreur lors de la modification de la note");
-}
-const updatedNote = await response.json();
-setNotes(notes.map((note) => (note.id === id ? { ...updatedNote } : note)));
-} catch (error) {
-setError(error.message);
-}
-};
-
-// Fonction pour gérer le changement de l'état checked d'une note
-const handleCheckboxChange = (isChecked, id) => {
-setNotes(
-notes.map((note) =>
-  note.id === id ? { ...note, checked: isChecked } : note
-)
-);
-};
+};*/
 
 // Fonction pour gérer le changement de couleur d'une note
 const handleColorChange = (color) => {
@@ -108,7 +106,6 @@ const handleColorChange = (color) => {
   setSelectedColor(color); // Mettre à jour la couleur sélectionnée
 };
 
-
 // Fonction pour gérer le changement de couleur lorsque la touche "Entrée" est enfoncée
 const handleColorKeyDown = (event) => {
 if (event.key === "Enter") {
@@ -117,10 +114,6 @@ if (event.key === "Enter") {
   handleColorChange(event.target.value, selectedNoteId);
 }
 };
-  // Mise à jour de la variable CSS lorsque selectedColor change
-  useEffect(() => {
-    document.documentElement.style.setProperty('--selected-color', selectedColor);
-  }, [selectedColor]);
 
 // Récupération de la note sélectionnée
 const selectedNote =
@@ -128,11 +121,14 @@ notes && notes.find((note) => note.id === selectedNoteId);
 
 return (
 <>
-{/* Barre latérale */}
+{/* Barre horizontale */}
+<hr className="Top" />
+
+{/* Barre latérale sur le coté gauche pour afficher les titres */}
 <aside className="Side">
-  {/* Création de nouvelle note */}
-  <div className="Create-note-wrapper">
-    <Button onClick={createNote}>+ Create new note</Button>
+{/* Création de nouvelle note */}
+<div className="Create-note-wrapper">
+  <Button onClick={createNote}>+ Create new note</Button>
   </div>
   {/* Chargement en cours */}
   {isLoading ? (
@@ -142,21 +138,23 @@ return (
   ) : (
     // Affichage des notes
     notes?.map((note) => (
-        <div
-    key={note.id}
-    className={`Note-container ${
-      selectedNoteId === note.id ? "Note-selected" : ""
-    }`}
-  >
+      <div
+        key={note.id}
+        className={`Note-container ${
+          selectedNoteId === note.id ? "Note-selected" : ""
+        }`}
+        style={{ backgroundColor: note.color }} // Ajoutez la couleur de la note ici
+      >
         {/* Titre de la note */}
         <button
-          className={`Note-button ${
-            selectedNoteId === note.id ? "Note-button-selected" : ""
+          className={`NoteTitle-button ${
+            selectedNoteId === note.id ? "NoteTitle-button-selected" : ""
           }`}
           onClick={() => {
             setSelectedNoteId(note.id);
             setShowColorPicker(true); // Afficher le sélecteur de couleur lorsque l'utilisateur sélectionne une note
           }}
+          style={{ backgroundColor: note.color }} // Ajoutez la couleur de la note ici
         >
           {note.title}
         </button>

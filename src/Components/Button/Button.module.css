@@ -3,12 +3,16 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid white;
+  border: 1px solid rgb(121, 201, 161);
   background-color: rgb(60, 60, 60);
   color: inherit;
   font-weight: bold;
 }
 
 .Button:hover {
+  background: rgb(60, 60, 60);
+}
+
+.Button:checked {
   background: rgb(60, 60, 60);
 }
