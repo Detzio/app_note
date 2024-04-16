@@ -71,30 +71,7 @@ const handleCheckboxChange = (isChecked, id) => {
     note.id === id ? { ...note, checked: isChecked } : note
   )
   );
-
-  /*for (let item of notes) {
-    if (item.id === id) {
-      updateNote(item);
-    }
-  }*/
 };
-
-// Fonction pour sauvegarder la checkbox
-/*const updateNote = async (note) => {
-const response = await fetch(`/notes/${note.id}`, {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    title: note.title,
-    content: note.content,
-    checked: note.checked,
-    color: note.color,
-    lastUpdatedAt: new Date(),
-  }),
-});
-};*/
 
 // Fonction pour gérer le changement de couleur d'une note
 const handleColorChange = (color) => {

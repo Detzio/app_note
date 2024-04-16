@@ -15,12 +15,13 @@ export function Note({
   title: initialTitle,
   content: initialContent,
   onSubmit,
+  checked,
   color // Ajoutez la prop color
 }) {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
   const [isSaved, setIsSaved] = useState(false);
-
+console.log(color);
   useEffect(() => {
     setTitle(initialTitle);
     setContent(initialContent);
@@ -35,7 +36,7 @@ export function Note({
     () => {
       updateNote();
     },
-    [title, content],
+    [title, content, color, checked],
     3000 // Délai de 3 secondes
   );
 
@@ -49,6 +50,8 @@ export function Note({
         title,
         content,
         lastUpdatedAt: new Date(),
+        color: color,
+        checked
       }),
     });
 
