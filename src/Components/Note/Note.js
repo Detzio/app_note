@@ -70,29 +70,31 @@ console.log(color);
     setIsSaved(false); // Cacher le libellé lorsque le contenu est modifié à nouveau
   };
 
-  return (
-    <form
-      className="Form"
-      onSubmit={(event) => {
-        event.preventDefault();
-        updateNote();
-      }}
-    >
-      <input
-        className="Note-editable Note-title"
-        type="text"
-        value={title}
-        onChange={handleTitleChange}
-      />
-      <textarea
-        className="Note-editable Note-content"
-        value={content}
-        onChange={handleContentChange}
-      />
-      <div className="Note-actions">
-        <Button>Enregistrer</Button>
-        {isSaved && <span>Enregistré ✅</span>} {/* Affichage du libellé si la note est enregistrée */}
-      </div>
-    </form>
-  );
+
+
+return (
+  <form
+    className="Form"
+    onSubmit={(event) => {
+      event.preventDefault();
+      updateNote();
+    }}
+  >
+    <input
+      className="Note-editable Note-title"
+      type="text"
+      value={title}
+      onChange={handleTitleChange}
+    />
+    <textarea
+      className="Note-editable Note-content"
+      value={content}
+      onChange={handleContentChange}
+    />
+    <div className="Note-actions">
+      <Button>Enregistrer</Button>
+      {isSaved && <span>Enregistré ✅</span>} {/* Affichage du libellé si la note est enregistrée */}
+    </div>
+  </form>
+);
 }

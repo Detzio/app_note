@@ -3,7 +3,7 @@
     {
       "title": "Ajouter un libellé \"Enregistré\" après la modification d'une note",
       "content": "Ne pas afficher le libellé au chargement d’une note\nAprès l’enregistrement d’une modification, l’afficher\nLorsque le titre ou le contenu est à nouveau modifié, ne plus l’afficher\n",
-      "lastUpdatedAt": "2024-04-16T20:18:51.792Z",
+      "lastUpdatedAt": "2024-04-16T20:53:25.551Z",
       "color": "#09fb25",
       "checked": true,
       "id": "27ad"
@@ -11,32 +11,33 @@
     {
       "title": "Rediriger vers la note nouvellement créée",
       "content": "lorem ipsus e\n",
-      "lastUpdatedAt": "2024-04-16T19:30:44.368Z",
+      "lastUpdatedAt": "2024-04-16T20:58:05.488Z",
       "id": "45td"
     },
     {
       "title": "Recherche par titre et contenu",
       "content": "Une barre de recherche permet de filtrer en temps réel les notes par titre et contenu\n\nOn peut effacer les termes de la recherche avec un bouton (X)\n\nLes termes de la recherche sont en surbrillance dans les notes trouvées",
-      "lastUpdatedAt": "2024-04-16T20:20:48.513Z",
+      "lastUpdatedAt": "2024-04-16T20:30:06.828Z",
       "id": "2c0a"
     },
     {
       "title": "Supprimer une note",
       "content": "Au clic sur le bouton, la note est supprimée du serveur\n\nElle disparaît de la liste des notes\n\nÉventuellement, elle n'est pas supprimée mais on lui ajoute \"inTrash\": true",
-      "lastUpdatedAt": "2024-04-16T20:20:28.977Z",
-      "checked": false,
+      "lastUpdatedAt": "2024-04-16T20:55:34.584Z",
+      "color": "#04ff00",
+      "checked": true,
       "id": "83ae"
     },
     {
       "title": "Afficher les messages d'erreur",
       "content": "Erreurs potentielles :\n\n- au chargement des notes\n- à la création d’une note\n- à la modification\n- à la suppression",
-      "lastUpdatedAt": "2024-04-16T20:20:40.415Z",
+      "lastUpdatedAt": "2024-04-16T20:55:49.681Z",
       "id": "ef47"
     },
     {
       "title": "Enregistrer automatiquement les modifications d'une note",
       "content": "Utiliser un hook personnalisé :\n\nexport const useDebouncedEffect = (effect, deps, delay) => {\n  useEffect(() => {\n    const handler = setTimeout(() => effect(), delay);\n\n    return () => clearTimeout(handler);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [...(deps || []), delay]);\n};\n\nProposition:\nfunction NoteList() {\n  const { data, isLoading, error} = useGetRequest(\"/api/note\");\n  const [notes, setNotes] = useState([]);\n\n  useEffect(() => {\n    if (data) {\n      setNotes(data);\n    }\n  }, [data]);\n\n  if (isLoading) {\n    return <Spinner />;\n  }\n\n  if (error) {\n    return <Text>Erreur lors du chargement des notes.</Text>;\n  }\n\n return (\n    <div>\n      <h2>Liste des Notes</h2>\n      {notes.length > 0 ? (\n        <ul>\n          {notes.map((note) => (\n            <li key={note.id}>{note.content}</li>\n          ))}\n        </ul>\n      ) : (\n        <Text>Aucune note à afficher.</Text>\n      )}\n    </div>\n  );\n}\n",
-      "lastUpdatedAt": "2024-04-16T20:20:20.710Z",
+      "lastUpdatedAt": "2024-04-16T20:52:52.889Z",
       "color": "#11ff00",
       "checked": true,
       "id": "d751"
@@ -44,8 +45,7 @@
     {
       "title": "Afficher les notes les plus récemment modifiées en premier",
       "content": "Enregistrer la date de dernière modification dateOfLastUpdate dans la note.\n\nSoit faire le tri côté client, soit côté serveur (https://www.npmjs.com/package/json-server).\n\nFaire apparaître la date, l’heure et la minute.\n\nAlternativement, rendre les notes positionnables par l'utilisateur.\n\nActivité",
-      "lastUpdatedAt": "2024-04-16T20:20:10.237Z",
-      "color": "#121211",
+      "lastUpdatedAt": "2024-04-16T21:00:38.009Z",
       "id": "182c"
     },
     {
@@ -58,10 +58,9 @@
     {
       "title": "Bouton pour changer de thème (jour-nuit)",
       "content": "Bouton soleil-lune (passer de l’un à l’autre ou en afficher un creux et l’autre plein)",
-      "lastUpdatedAt": "2024-04-05T17:31:20.619Z",
-      "id": "1a46",
+      "lastUpdatedAt": "2024-04-16T21:00:45.796Z",
       "checked": false,
-      "backgroundColor": ""
+      "id": "1a46"
     },
     {
       "title": "Marquer une note comme faite (`checked`)",
@@ -74,30 +73,29 @@
     {
       "title": "Au clic sur le bouton Supprimer, demander la confirmation dans une modale",
       "content": "\n\nAfficher une fenêtre modale au premier plan au milieu de l'écran (le reste de l'application apparaît grisé derrière un masque semi-transparent)\n\nUn texte demande : \"Voulez-vous supprimer la note ?\"\n\nUn bouton \"Annuler\" ferme la modale\n\nUn bouton \"Confirmer\" ferme la modale et supprime la note\n\nUn clic en dehors de la modale ferme la modale\n\nLa touche Échap ferme la modale",
-      "lastUpdatedAt": "2024-04-16T20:20:02.413Z",
+      "lastUpdatedAt": "2024-04-16T20:30:23.609Z",
       "id": "b83f"
     },
     {
       "title": "Afficher un panneau de rendu Markdown",
       "content": "Rend le contenu de la note au format Markdown visuellement.\n\nVoir Simplenote.",
-      "lastUpdatedAt": "2024-04-05T17:20:20.843Z",
-      "id": "ec72",
+      "lastUpdatedAt": "2024-04-16T21:00:16.891Z",
+      "color": "#ff0000",
       "checked": false,
-      "backgroundColor": ""
+      "id": "ec72"
     },
     {
       "title": "Pagination",
       "content": "Au chargement de l'app, ne charger que les 10 premières notes (/notes?_page=1&_limit=10)\n\nSous la liste des notes, afficher un bouton \"Voir plus\"\n\nAu clic, afficher la page suivante, et chaque clic charge la page suivante (le bouton reste toujours affiché sous les notes)\n\nPendant le chargement de chaque page, afficher le loader",
-      "lastUpdatedAt": "2024-04-16T20:09:36.057Z",
+      "lastUpdatedAt": "2024-04-16T20:59:13.032Z",
       "id": "1923"
     },
     {
       "title": "Afficher le nom de l'utilisateur dans une barre de statut",
       "content": "Dans une barre de statut générale, afficher le nom de l’utilisateur (GET http://localhost:4000/profile).",
-      "lastUpdatedAt": "2024-04-05T09:51:29.716Z",
-      "id": "8737",
+      "lastUpdatedAt": "2024-04-16T21:00:03.021Z",
       "checked": false,
-      "backgroundColor": ""
+      "id": "8737"
     },
     {
       "title": "Afficher les étiquettes à côté du titre des notes dans la liste",
@@ -110,25 +108,18 @@
     {
       "title": "Ajouter des étiquettes à une note",
       "content": "",
-      "lastUpdatedAt": "2024-04-16T20:18:39.844Z",
+      "lastUpdatedAt": "2024-04-16T20:56:51.151Z",
+      "color": "#04ff00",
       "checked": true,
       "id": "ba7c"
     },
     {
       "title": "Refactoriser les appels réseau",
       "content": "Extraire les appels à fetch et json dans une fonction réutilisable.\n\nProposition:\nimport { useState, useEffect } from 'react';\n\nexport function useGetRequest(url) {\n    const [data, setData] = useState(null);\n    const [isLoading, setLoading] = useState(true);\n    const [error, setError] = useState(false);\n\n    useEffect(() => {\n        if (!url) return;\n\n        setLoading(true);\n\n        async function fetchData() {\n            try {\n                const response = await fetch(url, {\n                    method: 'GET',\n                    headers: {\n                        'Content-Type': 'application/json',\n                    },\n                });\n\n                const data = await response.json();\n                setData(data);\n                console.log(data);\n\n            } catch (err) {\n                console.error('Erreur lors de la récupération des données:', err);\n                setError(true);\n            } finally {\n                setLoading(false);\n            }\n        }\n\n        fetchData();\n    }, [url]);\n\n    return { isLoading, data, error };\n}",
-      "lastUpdatedAt": "2024-04-16T20:19:48.051Z",
-      "color": "#171c18",
+      "lastUpdatedAt": "2024-04-16T21:00:21.339Z",
+      "color": "#c2b524",
       "checked": false,
       "id": "4898"
-    },
-    {
-      "id": "a3bb",
-      "title": "Nouvelle note",
-      "content": "",
-      "lastUpdatedAt": "2024-04-05T10:29:26.197Z",
-      "checked": false,
-      "backgroundColor": ""
     }
   ],
   "profile": {

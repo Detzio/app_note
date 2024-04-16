@@ -92,6 +92,17 @@ if (event.key === "Enter") {
 }
 };
 
+// Fonction pour supprimer une note
+const removeNote = async (id) => {
+  const response = await fetch(`/notes/${id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    setNotes(notes.filter((note) => note.id !== id));
+    if (selectedNoteId === id) setSelectedNoteId(null); // Désélectionner la note si elle est actuellement sélectionnée
+  }
+};
+
 // Récupération de la note sélectionnée
 const selectedNote =
 notes && notes.find((note) => note.id === selectedNoteId);
@@ -145,6 +156,16 @@ return (
             }
           />
         </label>
+        {/* Bouton de suppression */}
+        <div key={note.id} className="Note-button-container">
+          <button
+            className="Remove-button"
+            onClick={() => removeNote(note.id)}
+          >
+          Supprimer
+          </button>
+        </div>
+
 {/* Sélecteur de couleur pour la vignette */}
 {selectedNoteId === note.id && showColorPicker && (
 <div className="Color-picker-button">
