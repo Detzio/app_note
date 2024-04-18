@@ -2,16 +2,7 @@
 :root {
   --selected-color: #012907; /* Définir une couleur par défaut */
 }
-/* Barre horizontale en haut de la page */
-.Top {
-  position: fixed;
-  height: 50px;
-  width: 100%;
-  margin-bottom: 0;
-  margin-top: 0;
-  background-color: rgb(34, 42, 35);
-  border: none; 
-}
+
 
 /* Section de la SideBar */
 .Side {
@@ -75,3 +66,56 @@
   background: rgb(0, 66, 24);
 }
 
+/* Barre horizontale */
+.Top {
+  display: flex;
+  position: fixed;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+  background-color: rgb(34, 42, 35);
+  border-bottom: 1px solid #ccc;
+  border: none; 
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+
+/* Conteneur de la barre de recherche */
+.Search-wrapper {
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  width: 10px;
+  border-radius: 5px;
+}
+
+/* Champ de saisie de la barre de recherche */
+.Search-wrapper input {
+  z-index: 1;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+}
+
+/* Bouton d'effacement de la barre de recherche */
+.Clear-button {
+  z-index: 1;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+}
+
+/* Change la couleur du bouton lorsqu'il est survolé */
+.Clear-button:hover {
+  z-index: 1;
+  background-color: #e57373;
+}

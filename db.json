@@ -11,13 +11,15 @@
     {
       "title": "Rediriger vers la note nouvellement créée",
       "content": "lorem ipsus e\n",
-      "lastUpdatedAt": "2024-04-16T20:58:05.488Z",
+      "lastUpdatedAt": "2024-04-18T20:18:43.819Z",
       "id": "45td"
     },
     {
       "title": "Recherche par titre et contenu",
-      "content": "Une barre de recherche permet de filtrer en temps réel les notes par titre et contenu\n\nOn peut effacer les termes de la recherche avec un bouton (X)\n\nLes termes de la recherche sont en surbrillance dans les notes trouvées",
-      "lastUpdatedAt": "2024-04-16T20:30:06.828Z",
+      "content": "Une barre de recherche permet de filtrer en temps réel les notes par titre et contenu\n\nOn peut effacer les termes de la recherche avec un bouton (X)\n\nLes termes de la recherche sont en surbrillance dans les notes trouvées\n",
+      "lastUpdatedAt": "2024-04-18T20:18:39.585Z",
+      "color": "#00ff40",
+      "checked": true,
       "id": "2c0a"
     },
     {
@@ -31,21 +33,22 @@
     {
       "title": "Afficher les messages d'erreur",
       "content": "Erreurs potentielles :\n\n- au chargement des notes\n- à la création d’une note\n- à la modification\n- à la suppression",
-      "lastUpdatedAt": "2024-04-16T20:55:49.681Z",
+      "lastUpdatedAt": "2024-04-18T19:52:17.511Z",
+      "color": "#00ff4c",
       "id": "ef47"
     },
     {
       "title": "Enregistrer automatiquement les modifications d'une note",
       "content": "Utiliser un hook personnalisé :\n\nexport const useDebouncedEffect = (effect, deps, delay) => {\n  useEffect(() => {\n    const handler = setTimeout(() => effect(), delay);\n\n    return () => clearTimeout(handler);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [...(deps || []), delay]);\n};\n\nProposition:\nfunction NoteList() {\n  const { data, isLoading, error} = useGetRequest(\"/api/note\");\n  const [notes, setNotes] = useState([]);\n\n  useEffect(() => {\n    if (data) {\n      setNotes(data);\n    }\n  }, [data]);\n\n  if (isLoading) {\n    return <Spinner />;\n  }\n\n  if (error) {\n    return <Text>Erreur lors du chargement des notes.</Text>;\n  }\n\n return (\n    <div>\n      <h2>Liste des Notes</h2>\n      {notes.length > 0 ? (\n        <ul>\n          {notes.map((note) => (\n            <li key={note.id}>{note.content}</li>\n          ))}\n        </ul>\n      ) : (\n        <Text>Aucune note à afficher.</Text>\n      )}\n    </div>\n  );\n}\n",
-      "lastUpdatedAt": "2024-04-16T20:52:52.889Z",
+      "lastUpdatedAt": "2024-04-18T19:52:21.816Z",
       "color": "#11ff00",
       "checked": true,
       "id": "d751"
     },
     {
       "title": "Afficher les notes les plus récemment modifiées en premier",
-      "content": "Enregistrer la date de dernière modification dateOfLastUpdate dans la note.\n\nSoit faire le tri côté client, soit côté serveur (https://www.npmjs.com/package/json-server).\n\nFaire apparaître la date, l’heure et la minute.\n\nAlternativement, rendre les notes positionnables par l'utilisateur.\n\nActivité",
-      "lastUpdatedAt": "2024-04-16T21:00:38.009Z",
+      "content": "Enregistrer la date de dernière modification dateOfLastUpdate dans la note.\n\nSoit faire le tri côté client, soit côté serveur (https://www.npmjs.com/package/json-server).\n\nFaire apparaître la date, l’heure et la minute.\n\nAlternativement, rendre les notes positionnables par l'utilisateur.\n\nActivité\n\ntest 2",
+      "lastUpdatedAt": "2024-04-18T20:49:21.656Z",
       "id": "182c"
     },
     {
@@ -58,7 +61,7 @@
     {
       "title": "Bouton pour changer de thème (jour-nuit)",
       "content": "Bouton soleil-lune (passer de l’un à l’autre ou en afficher un creux et l’autre plein)",
-      "lastUpdatedAt": "2024-04-16T21:00:45.796Z",
+      "lastUpdatedAt": "2024-04-18T20:18:48.888Z",
       "checked": false,
       "id": "1a46"
     },
@@ -100,7 +103,7 @@
     {
       "title": "Afficher les étiquettes à côté du titre des notes dans la liste",
       "content": "",
-      "lastUpdatedAt": "2024-04-16T20:19:55.150Z",
+      "lastUpdatedAt": "2024-04-18T20:51:21.121Z",
       "color": "#06f923",
       "checked": true,
       "id": "a1cc"
@@ -116,7 +119,7 @@
     {
       "title": "Refactoriser les appels réseau",
       "content": "Extraire les appels à fetch et json dans une fonction réutilisable.\n\nProposition:\nimport { useState, useEffect } from 'react';\n\nexport function useGetRequest(url) {\n    const [data, setData] = useState(null);\n    const [isLoading, setLoading] = useState(true);\n    const [error, setError] = useState(false);\n\n    useEffect(() => {\n        if (!url) return;\n\n        setLoading(true);\n\n        async function fetchData() {\n            try {\n                const response = await fetch(url, {\n                    method: 'GET',\n                    headers: {\n                        'Content-Type': 'application/json',\n                    },\n                });\n\n                const data = await response.json();\n                setData(data);\n                console.log(data);\n\n            } catch (err) {\n                console.error('Erreur lors de la récupération des données:', err);\n                setError(true);\n            } finally {\n                setLoading(false);\n            }\n        }\n\n        fetchData();\n    }, [url]);\n\n    return { isLoading, data, error };\n}",
-      "lastUpdatedAt": "2024-04-16T21:00:21.339Z",
+      "lastUpdatedAt": "2024-04-18T19:51:41.434Z",
       "color": "#c2b524",
       "checked": false,
       "id": "4898"
